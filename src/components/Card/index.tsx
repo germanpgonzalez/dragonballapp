@@ -1,10 +1,16 @@
+import type { CharacterType } from "../../App";
 
-const index = () => {
-  return (
-    <article>
-        <h2>Item</h2>
-    </article>
-  )
+interface Props {
+  item: CharacterType;
 }
 
-export default index
+const index = ({ item } : Props) => {
+  return (
+    <div key={item.id} className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+      <h3 className="text-center border-l-black">{item.name}</h3>
+      <img src={item.image} alt={item.name} width={150} />
+    </div>
+  );
+};
+
+export default index;

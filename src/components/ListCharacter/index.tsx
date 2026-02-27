@@ -1,4 +1,6 @@
-import type { CharacterType } from "../../App"
+import type { CharacterType } from "../../App";
+import Card from "../Card";
+
 
 interface Props {
   character: CharacterType[]
@@ -10,10 +12,7 @@ const index = ({character} : Props) => {
       {
         character.map( (item) => {
             return (
-            <article key={item.id}>
-                <h3>{item.name}</h3>
-                {item.image}
-            </article>
+             <Card item={item} key={item.id}/>
             )
         })
       }
