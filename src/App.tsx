@@ -35,8 +35,8 @@ function App() {
   return (
     <>
       <Navbar/>
-      <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
-      <ListCharacter character={character} />
+      <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2 mt-10 mb-10 px-10">
+        <ListCharacter character={character} />
       </main>
       <Footer/>
     </>
