@@ -16,6 +16,7 @@ const index = ({ item } : Props) => {
         <p className="text-amber-600 text-xl font-bold">Género: <span className="font-light text-white">{item.gender}</span></p>
         <p className="text-amber-600 text-xl font-bold">Base Ki: <span className="font-light text-white">{item.ki}</span></p>
         <p className="text-amber-600 text-xl font-bold">Total Ki: <span className="font-light text-white">{item.maxKi}</span></p>
+        <p className="text-amber-600 text-xl font-bold">Afiliación: <span className="font-light text-white">{item.affiliation}</span></p>
       </div>
     </div>
   );
