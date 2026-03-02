@@ -11,7 +11,7 @@ export interface CharacterType  {
   gender: string;
   ki: string;
   maxKi: string;
-  affiliation: string;
+  affiliation: string
 };
 
 interface ApiResponseType  {
