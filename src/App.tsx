@@ -7,6 +7,10 @@ export interface CharacterType  {
   id: number;
   name: string;
   image: string;
+  race: string;
+  gender: string;
+  ki: string;
+  maxKi: string;
 };
 
 interface ApiResponseType  {
