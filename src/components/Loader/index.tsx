@@ -1,4 +1,4 @@
-import esfera from 'src/assets/img/esfera.png';
+import esfera from '../../assets/img/esfera.png';
 
 const index = () => {
   return (
