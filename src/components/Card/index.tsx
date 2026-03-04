@@ -25,7 +25,7 @@ const index = ({ item } : Props) => {
     <div key={item.id} className="bg-white rounded-lg shadow-md flex flex-col items-center w-80 mt-10 mb-10 h-130">
       <h2 className="text-center text-2xl text-black mb-10">{item.name}</h2>
       <div className="w-full h-72 flex items-center justify-center">
-        <img src={item.image} alt={item.name} className="max-h-full max-w-full object-contain transition-transform duration-300  hover:filter-[drop-shadow(0_0_25px_var(--glow-color))]"
+        <img src={item.image} alt={item.name}  loading="lazy" className="max-h-full max-w-full object-contain transition-transform duration-300  hover:filter-[drop-shadow(0_0_25px_var(--glow-color))]"
   style={
     { "--glow-color": getGlowByRace(item.race) } as React.CSSProperties
   }/>
