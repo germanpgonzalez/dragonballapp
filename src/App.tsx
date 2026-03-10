@@ -1,5 +1,6 @@
 import ListCharacter from "./components/ListCharacter";
 import Loader from "./components/Loader";
+import Pagination from "./components/Pagination";
 import { useEffect, useState } from "react";
 import { Layout } from "./layout";
 
@@ -16,27 +17,34 @@ export interface CharacterType {
 
 interface ApiResponseType {
   items: CharacterType[];
+  meta: {
+    totalPages: number;
+  };
 }
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const [character, setCharacter] = useState<CharacterType[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
 
   useEffect(() => {
+    console.log("Página actual:", page);
     const fetchItem = async () => {
       try {
         const response = await fetch(
-          "https://dragonball-api.com/api/characters",
+          `https://dragonball-api.com/api/characters?page=${page}&limit=12`
         );
         const data: ApiResponseType = await response.json();
         setCharacter(data.items);
+        setTotalPages(data.meta.totalPages);
         setLoading(false);
       } catch (error) {
-        console.log("Errro en el fetch");
+        console.log("Error en el fetch");
       }
     };
     fetchItem();
-  }, []);
+  },[page]);
 
   return (
     <>
@@ -50,6 +58,7 @@ function App() {
             <ListCharacter character={character} />
           </div>
         )}
+        <Pagination page={page} setPage={setPage} totalPages={totalPages}/>
       </Layout>
     </>
   );
