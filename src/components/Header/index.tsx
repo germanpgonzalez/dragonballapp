@@ -1,8 +1,9 @@
+import Logo from '../../assets/img/logo.png';
 
 const index = () => {
   return (
-    <header className="bg-orange-400">
-        <h2>Header</h2>
+    <header className="bg-orange-500 flex justify-center items-center">
+        <img src={Logo} alt="Logo" className='w-90 h-36'/>
     </header>
   )
 }
