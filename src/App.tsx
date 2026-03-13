@@ -3,6 +3,7 @@ import Loader from "./components/Loader";
 import Pagination from "./components/Pagination";
 import { useEffect, useState } from "react";
 import { Layout } from "./layout";
+import ButtonSearch from "./components/ButtonSearch";
 
 export interface CharacterType {
   id: number;
@@ -49,6 +50,7 @@ function App() {
   return (
     <>
       <Layout>
+        <ButtonSearch/>
         {loading ? (
           <div className="flex justify-center items-center min-h-screen">
             <Loader />
