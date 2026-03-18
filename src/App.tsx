@@ -28,9 +28,9 @@ function App() {
   const [character, setCharacter] = useState<CharacterType[]>([]);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(0);
+  const [search, setSearch] = useState<string>("");
 
   useEffect(() => {
-    console.log("Página actual:", page);
     const fetchItem = async () => {
       try {
         const response = await fetch(
@@ -50,14 +50,16 @@ function App() {
   return (
     <>
       <Layout>
-        <ButtonSearch/>
+        <ButtonSearch 
+         setSearch={setSearch}
+         />
         {loading ? (
           <div className="flex justify-center items-center min-h-screen">
             <Loader />
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-2 max-w-6xl mx-auto mt-28">
-            <ListCharacter character={character} />
+            <ListCharacter character={character} search={search}/>
           </div>
         )}
         <Pagination page={page} setPage={setPage} totalPages={totalPages}/>
