@@ -2,9 +2,10 @@ import type { CharacterType } from "../../App";
 
 interface Props {
   item: CharacterType;
+  setSelectedCharacter: (char: CharacterType) => void;
 }
 
-const index = ({ item } : Props) => {
+const index = ({ item, setSelectedCharacter } : Props) => {
 
   const getGlowByRace = (race: string) => {
   switch (race.toLowerCase()) {
@@ -36,6 +37,10 @@ const index = ({ item } : Props) => {
         <p className="text-amber-600 text-xl font-bold">Base Ki: <span className="font-light text-white">{item.ki}</span></p>
         <p className="text-amber-600 text-xl font-bold">Total Ki: <span className="font-light text-white">{item.maxKi}</span></p>
         <p className="text-amber-600 text-xl font-bold">Afiliación: <span className="font-light text-white">{item.affiliation}</span></p>
+        <button 
+        className="mt-3 bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-600 transition cursor-pointer"
+        onClick={() => setSelectedCharacter(item)}
+        >Ver más</button>
       </div>
     </div>
   );

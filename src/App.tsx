@@ -4,6 +4,7 @@ import Pagination from "./components/Pagination";
 import { useEffect, useState } from "react";
 import { Layout } from "./layout";
 import ButtonSearch from "./components/ButtonSearch";
+import CharacterModal from "./components/CharacterModal";
 
 export interface CharacterType {
   id: number;
@@ -14,6 +15,7 @@ export interface CharacterType {
   ki: string;
   maxKi: string;
   affiliation: string;
+  description: string;
 }
 
 interface ApiResponseType {
@@ -29,12 +31,14 @@ function App() {
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [search, setSearch] = useState<string>("");
+  const [selectedCharacter, setSelectedCharacter] =
+    useState<CharacterType | null>(null);
 
   useEffect(() => {
     const fetchItem = async () => {
       try {
         const response = await fetch(
-          `https://dragonball-api.com/api/characters?page=${page}&limit=12`
+          `https://dragonball-api.com/api/characters?page=${page}&limit=12`,
         );
         const data: ApiResponseType = await response.json();
         setCharacter(data.items);
@@ -45,24 +49,32 @@ function App() {
       }
     };
     fetchItem();
-  },[page]);
+  }, [page]);
 
   return (
     <>
       <Layout>
-        <ButtonSearch 
-         setSearch={setSearch}
-         />
+        <ButtonSearch setSearch={setSearch} />
         {loading ? (
           <div className="flex justify-center items-center min-h-screen">
             <Loader />
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-2 max-w-6xl mx-auto mt-28">
-            <ListCharacter character={character} search={search}/>
+            <ListCharacter
+              character={character}
+              search={search}
+              setSelectedCharacter={setSelectedCharacter}
+            />
           </div>
         )}
-        <Pagination page={page} setPage={setPage} totalPages={totalPages}/>
+        {selectedCharacter && (
+          <CharacterModal
+            character={selectedCharacter}
+            onClose={() => setSelectedCharacter(null)}
+          />
+        )}
+        <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       </Layout>
     </>
   );
